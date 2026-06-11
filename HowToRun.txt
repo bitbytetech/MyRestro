@@ -1,0 +1,64 @@
+✦ To get your project up and running, follow these steps. Since we are using Docker, it will handle installing the database and Python for you.
+
+  1. Prerequisites
+  Make sure you have Docker Desktop installed on your Mac. If you don't have it, download it from docker.com (https://www.docker.com/products/docker-desktop/).
+
+  2. Open your Terminal
+  Open your terminal (like Terminal or iTerm2) and navigate to your project folder:
+
+   1 cd /Users/ankit/MyData/projects/LearningPython/MyRestro/FastApi
+
+  3. Build and Start the Application
+  Run this command to build the project and start the database and API in the background:
+
+   1 docker-compose up --build -d
+   * --build: Tells Docker to compile your Python code.
+   * -d: Runs everything in the "detached" mode (background).
+
+  4. Verify everything is running
+  Check the status of your "containers":
+   1 docker-compose ps
+  You should see two items (api and db) with the status "Up" or "Running".
+
+  5. Create your Admin User (Seed)
+  Your database is currently empty. Run this command to create the default Admin account:
+
+   1 docker-compose exec api python seed.py
+  You should see a message: "Admin user created: admin@myrestro.com / admin123"
+
+  6. Test the API (Swagger UI)
+  Open your browser and go to:
+  👉 http://localhost:8000/docs (http://localhost:8000/docs)
+
+  This is the Swagger UI. You can:
+   1. Click on the POST /api/v1/auth/login endpoint.
+   2. Click "Try it out".
+   3. Enter admin@myrestro.com and admin123.
+   4. Click "Execute" to get your first Login Token!
+
+  ---
+
+  Useful Commands for Later:
+   * To stop the project: docker-compose down
+   * To see the logs (if something breaks): docker-compose logs -f api
+   * To restart after a code change: docker-compose restart api (Note: Docker is set to auto-reload in this project, so you usually don't need this!)
+
+  Let me know if you hit any errors during the docker-compose up command!
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+
+
+
+Check Status:
+
+   1     docker-compose ps
+      You should see both api and db as "Up".
+
+   2. Test the API:
+      Go to http://localhost:8000/docs (http://localhost:8000/docs).
+
+   3. Login as Admin:
+       * Email: admin@myrestro.com
+       * Password: admin123
+
+  You can now start testing the menu creation and ordering features! Since the code is "mounted" into Docker, any changes you make to the files locally will automatically reload the
+  server.

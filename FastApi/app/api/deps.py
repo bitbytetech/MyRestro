@@ -5,12 +5,11 @@ from jose import jwt, JWTError
 from sqlmodel import Session, select
 from ..db.database import get_session
 from ..core.config import settings
-from ..core.security import ALGORITHM
 from ..models.models import User, UserRole
 from ..schemas.schemas import TokenData
 
 reusable_oauth2 = OAuth2PasswordBearer(
-    tokenUrl="/auth/login"
+    tokenUrl="/api/v1/auth/login"
 )
 
 def get_current_user(

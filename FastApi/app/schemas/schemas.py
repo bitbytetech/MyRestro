@@ -1,5 +1,6 @@
 from pydantic import BaseModel, EmailStr
 from typing import Optional, List
+from datetime import datetime
 from ..models.models import UserRole, OrderStatus
 
 class UserBase(BaseModel):
